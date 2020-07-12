@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import com.martinezdputra.rateconverter.R
-import com.martinezdputra.rateconverter.databinding.LayoutCurrencyDropdownItemBinding
 import com.martinezdputra.rateconverter.datamodel.Currency
 
 class CurrencyAdapter(context: Context, currencies: List<Currency>): ArrayAdapter<Currency>(context, 0, currencies) {

@@ -7,5 +7,5 @@ import io.reactivex.Observable
 interface HomepageDataStore {
     fun getCurrencies(): Observable<CurrenciesResponse>
 
-    fun getLiveConversion(): Observable<LiveConversionResponse>
+    fun getLiveConversion(source: String): Observable<LiveConversionResponse>
 }

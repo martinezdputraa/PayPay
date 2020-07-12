@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="title"
+            type="String" />
+        <variable
+            name="title2"
+            type="String" />
+        <variable
+            name="conversionRate"
+            type="String" />
+        <variable
+            name="amountAfterConversion"
+            type="String" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_s"
+        app:cardCornerRadius="@dimen/spacing_xs"
+        app:cardElevation="@dimen/spacing_xxs"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/dark_primary"
+                android:textSize="@dimen/font_size_l"
+                android:textStyle="bold"
+                android:text="@{title}"
+                tools:text="USD" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/dark_primary"
+                android:textSize="@dimen/font_size_l"
+                android:textStyle="bold"
+                android:text="@{title2}"
+                tools:text="United States Dollar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_m"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rate:"
+                    android:textColor="@color/dark_primary"
+                    android:textSize="@dimen/font_size_l"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:textColor="@color/dark_primary"
+                    android:textSize="@dimen/font_size_l"
+                    android:text="@{conversionRate}"
+                    tools:text="0.1239282" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total:"
+                    android:textColor="@color/dark_primary"
+                    android:textSize="@dimen/font_size_l"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:textColor="@color/dark_primary"
+                    android:textSize="@dimen/font_size_l"
+                    android:text="@{amountAfterConversion}"
+                    tools:text="1232" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

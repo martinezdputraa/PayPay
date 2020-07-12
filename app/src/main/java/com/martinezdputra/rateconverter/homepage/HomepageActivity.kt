@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.martinezdputra.rateconverter.R
 import com.martinezdputra.rateconverter.adapter.CurrencyAdapter
+import com.martinezdputra.rateconverter.adapter.RateAdapter
 import com.martinezdputra.rateconverter.core.CoreActivity
 import com.martinezdputra.rateconverter.databinding.HomepageActivityBinding
 import com.martinezdputra.rateconverter.datamodel.Currency
@@ -27,7 +28,7 @@ class HomepageActivity: CoreActivity<HomepageViewModel>() {
 
     private val mHandler = Handler()
     private val afterTextChangedTask = Runnable {
-        Toast.makeText(this, "executed for ${viewModel.amount}", Toast.LENGTH_SHORT).show()
+        viewModel.fetchConversionRates()
     }
 
     override fun createViewModel(): HomepageViewModel {
@@ -48,6 +49,10 @@ class HomepageActivity: CoreActivity<HomepageViewModel>() {
         return mBinding
     }
 
+    private fun showToastMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
     private fun initViewComponents() {
         mBinding.editTextInput.doAfterTextChanged {
             mHandler.removeCallbacks(afterTextChangedTask)
@@ -60,17 +65,21 @@ class HomepageActivity: CoreActivity<HomepageViewModel>() {
 
                 }
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    val selectedItem: Currency? = parent?.getItemAtPosition(position) as? Currency
-                    Toast.makeText(this@HomepageActivity, "selected item position ${selectedItem?.code}", Toast.LENGTH_SHORT).show()
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    (parent?.getItemAtPosition(position) as? Currency)?.also { currency ->
+                        viewModel.selectedCurrency = currency
+                        viewModel.fetchConversionRates()
+                    }
                 }
             }
+        })
 
+        viewModel.rates.observe(this, Observer {
+            mBinding.gridView.adapter = RateAdapter(this, it)
+        })
+
+        viewModel.errorMessage.observe(this, Observer {
+            it?.also { showToastMessage(it) }
         })
     }
 }

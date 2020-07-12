@@ -5,4 +5,10 @@
     <dimen name="spacing_s">8dp</dimen>
     <dimen name="spacing_m">16dp</dimen>
     <dimen name="spacing_l">24dp</dimen>
+
+    <dimen name="font_size_s">10sp</dimen>
+    <dimen name="font_size_m">12sp</dimen>
+    <dimen name="font_size_l">14sp</dimen>
+    <dimen name="font_size_xl">16sp</dimen>
+    <dimen name="font_size_xxl">20sp</dimen>
 </resources>

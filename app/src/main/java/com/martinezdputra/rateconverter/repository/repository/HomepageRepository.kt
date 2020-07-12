@@ -1,6 +1,7 @@
 package com.martinezdputra.rateconverter.repository.repository
 
 import com.martinezdputra.rateconverter.datamodel.response.CurrenciesResponse
+import com.martinezdputra.rateconverter.datamodel.response.LiveConversionResponse
 import com.martinezdputra.rateconverter.repository.datastore.HomepageLocalDataStore
 import com.martinezdputra.rateconverter.repository.datastore.HomepageRemoteDataStore
 import io.reactivex.Observable
@@ -12,7 +13,7 @@ class HomepageRepository @Inject constructor(private val localDataStore: Homepag
         return remoteDataStore.getCurrencies()
     }
 
-    fun getCacheCurrencyData(): Observable<CurrenciesResponse> {
-        return localDataStore.getCurrencies()
+    fun fetchConversionRateData(source: String): Observable<LiveConversionResponse> {
+        return remoteDataStore.getLiveConversion(source)
     }
 }

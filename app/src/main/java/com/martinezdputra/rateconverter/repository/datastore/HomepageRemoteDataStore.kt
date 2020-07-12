@@ -7,13 +7,13 @@ import io.reactivex.Observable
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class HomepageRemoteDataStore @Inject constructor(val apiService: ApiService): HomepageDataStore {
+class HomepageRemoteDataStore @Inject constructor(private val apiService: ApiService): HomepageDataStore {
 
     override fun getCurrencies(): Observable<CurrenciesResponse> {
         return apiService.getCurrencies()
     }
 
-    override fun getLiveConversion(): Observable<LiveConversionResponse> {
-        return apiService.getLiveConversion()
+    override fun getLiveConversion(source: String): Observable<LiveConversionResponse> {
+        return apiService.getLiveConversion(source = source)
     }
 }

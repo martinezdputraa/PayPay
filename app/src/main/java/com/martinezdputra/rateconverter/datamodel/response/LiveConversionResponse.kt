@@ -6,4 +6,6 @@ data class LiveConversionResponse (
     val privary: String? = null,
     val timestamp: Long = 0,
     val source: String? = null,
-    val quotes: Map<String, Float>? = null)
+    val quotes: Map<String, Double>? = null,
+    val error: Error? = null
+)

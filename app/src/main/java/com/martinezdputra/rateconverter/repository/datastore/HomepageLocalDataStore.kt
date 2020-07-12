@@ -10,7 +10,7 @@ class HomepageLocalDataStore @Inject constructor(): HomepageDataStore {
         TODO("Not yet implemented")
     }
 
-    override fun getLiveConversion(): Observable<LiveConversionResponse> {
+    override fun getLiveConversion(source: String): Observable<LiveConversionResponse> {
         TODO("Not yet implemented")
     }
 }
