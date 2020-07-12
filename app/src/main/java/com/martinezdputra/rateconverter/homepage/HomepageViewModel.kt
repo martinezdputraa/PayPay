@@ -34,7 +34,7 @@ class HomepageViewModel @Inject constructor(private val homepageRepository: Home
     }
 
     fun fetchConversionRates() {
-        if(inputAmount != null) {
+        if(!inputAmount.isNullOrEmpty()) {
             compositeDisposable.add(
                 homepageRepository.fetchConversionRateData(selectedCurrency.code)
                     .subscribeOn(Schedulers.io())
