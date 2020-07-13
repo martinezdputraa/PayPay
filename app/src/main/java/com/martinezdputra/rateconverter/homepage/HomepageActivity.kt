@@ -36,7 +36,11 @@ class HomepageActivity: CoreActivity<HomepageViewModel>() {
     }
 
     override fun injectComponent() {
-        DaggerAppComponent.create().inject(this)
+        DaggerAppComponent
+            .builder()
+            .application(application)
+            .build()
+            .inject(this)
     }
 
     override fun onInitView(): ViewDataBinding {

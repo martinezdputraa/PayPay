@@ -12,4 +12,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun currencyDao(): CurrencyDao
 
     abstract fun rateDao(): RateDao
+
+    companion object {
+        const val DB_NAME = "paypay.db"
+    }
 }

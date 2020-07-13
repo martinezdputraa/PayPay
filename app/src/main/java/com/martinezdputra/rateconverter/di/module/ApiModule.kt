@@ -1,7 +1,8 @@
 package com.martinezdputra.rateconverter.di.module
 
-import com.martinezdputra.rateconverter.di.annotation.ApplicationScope
+import com.martinezdputra.rateconverter.db.AppDatabase
 import com.martinezdputra.rateconverter.repository.ApiService
+import com.martinezdputra.rateconverter.repository.AppSharedPreference
 import com.martinezdputra.rateconverter.repository.datastore.HomepageLocalDataStore
 import com.martinezdputra.rateconverter.repository.datastore.HomepageRemoteDataStore
 import com.martinezdputra.rateconverter.repository.repository.HomepageRepository
@@ -29,7 +30,6 @@ class ApiModule {
     }
 
     @Provides
-    @ApplicationScope
     fun providesApiService() : ApiService {
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -44,11 +44,13 @@ class ApiModule {
     }
 
     @Provides
-    fun provideHomepageLocalDataStore() = HomepageLocalDataStore()
+    fun provideHomepageLocalDataStore(appDatabase: AppDatabase) = HomepageLocalDataStore(appDatabase)
 
     @Provides
     fun provideHomepageRemoteDataStore(apiService: ApiService) = HomepageRemoteDataStore(apiService)
 
     @Provides
-    fun provideHomepageRepository(localDataStore: HomepageLocalDataStore, remoteDataStore: HomepageRemoteDataStore) = HomepageRepository(localDataStore, remoteDataStore)
+    fun provideHomepageRepository(localDataStore: HomepageLocalDataStore, remoteDataStore: HomepageRemoteDataStore, appDatabase: AppDatabase, appSharedPreference: AppSharedPreference): HomepageRepository {
+        return HomepageRepository(localDataStore, remoteDataStore, appDatabase, appSharedPreference)
+    }
 }
