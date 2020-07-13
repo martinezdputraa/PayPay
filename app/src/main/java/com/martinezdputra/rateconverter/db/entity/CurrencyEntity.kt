@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 @Entity
 data class CurrencyEntity(
     @PrimaryKey val code: String,
-    @ColumnInfo(name = "display_string") val displayString: String?
+    @ColumnInfo(name = "display_string") val displayString: String
 )

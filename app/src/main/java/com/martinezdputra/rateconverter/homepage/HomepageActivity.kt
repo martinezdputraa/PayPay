@@ -15,7 +15,7 @@ import com.martinezdputra.rateconverter.adapter.RateAdapter
 import com.martinezdputra.rateconverter.core.CoreActivity
 import com.martinezdputra.rateconverter.databinding.HomepageActivityBinding
 import com.martinezdputra.rateconverter.datamodel.Currency
-import com.martinezdputra.rateconverter.di.component.DaggerDomainComponent
+import com.martinezdputra.rateconverter.di.component.DaggerAppComponent
 import javax.inject.Inject
 
 
@@ -36,7 +36,11 @@ class HomepageActivity: CoreActivity<HomepageViewModel>() {
     }
 
     override fun injectComponent() {
-        DaggerDomainComponent.create().inject(this)
+        DaggerAppComponent
+            .builder()
+            .application(application)
+            .build()
+            .inject(this)
     }
 
     override fun onInitView(): ViewDataBinding {

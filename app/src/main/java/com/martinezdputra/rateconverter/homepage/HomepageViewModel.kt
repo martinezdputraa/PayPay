@@ -24,9 +24,11 @@ class HomepageViewModel @Inject constructor(private val homepageRepository: Home
                 .subscribe({ response ->
                     if(response.success) {
                         response?.currencies?.also { res ->
-                            val value = res.map { Currency(it.key, it.value) }
-                            currencies.value = value
-                            selectedCurrency = value[0]
+                            if(!res.isNullOrEmpty()) {
+                                val value = res.map { Currency(it.key, it.value) }
+                                currencies.value = value
+                                selectedCurrency = value[0]
+                            }
                         }
                     }
                 }, {t: Throwable? -> t?.printStackTrace()})
