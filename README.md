@@ -37,3 +37,4 @@ ex case:
 - [x] Some text entry widget to enter the amount
 - [x] A list/grid of exchange rates
 - [x] It doesn’t need to be super pretty, but it shouldn’t be broken as well ;)
+- [x] Test update repo
